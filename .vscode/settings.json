@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.defaultFormatter": "golang.go"
+  }
+}
