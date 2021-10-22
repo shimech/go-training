@@ -1,0 +1,8 @@
+goos: darwin
+goarch: amd64
+pkg: gobook/chapter01/question1.3
+cpu: Intel(R) Core(TM) i7-1068NG7 CPU @ 2.30GHz
+BenchmarkStringifyArgsWithLoop-8   	13064402	        88.57 ns/op	      32 B/op	       2 allocs/op
+BenchmarkStringifyArgsWithJoin-8   	31615659	        39.12 ns/op	      16 B/op	       1 allocs/op
+PASS
+ok  	gobook/chapter01/question1.3	2.753s
