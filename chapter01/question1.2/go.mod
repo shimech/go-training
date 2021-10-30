@@ -1,3 +1,3 @@
-module gobook/chapter01/question1.2
+module github.com/shimech/go-training/chapter01/question1.2
 
 go 1.17
