@@ -14,14 +14,20 @@ var green = color.RGBA{0x00, 0xFF, 0x00, 0xFF}
 var blue = color.RGBA{0x00, 0x00, 0xFF, 0xFF}
 var palette = []color.Color{color.Black, red, green, blue}
 
-func lissajous(out io.Writer) {
-	const (
-		cycles  = 5
-		res     = 0.001
-		size    = 100
-		nframes = 64
-		delay   = 8
-	)
+type Param struct {
+	Cycles  float64
+	Res     float64
+	Size    int
+	Nframes int
+	Delay   int
+}
+
+func lissajous(out io.Writer, param Param) {
+	cycles := param.Cycles
+	res := param.Res
+	size := param.Size
+	nframes := param.Nframes
+	delay := param.Delay
 	freq := rand.Float64() * 3.0
 	anim := gif.GIF{LoopCount: nframes}
 	phase := 0.0
@@ -31,7 +37,7 @@ func lissajous(out io.Writer) {
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), uint8(rand.Intn(3)+1))
+			img.SetColorIndex(size+int(x*float64(size)+0.5), size+int(y*float64(size)+0.5), uint8(rand.Intn(3)+1))
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
