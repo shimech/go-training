@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
@@ -11,42 +12,57 @@ import (
 	"github.com/shimech/go-training/chapter02/question2.2/weightconv"
 )
 
+var sc = bufio.NewScanner(os.Stdin)
+
 func main() {
 	tArg := flag.String("temp", "", "Temperature")
 	lArg := flag.String("length", "", "Length")
 	wArg := flag.String("weight", "", "Weight")
 	flag.Parse()
 
-	if *tArg != "" {
-		t, err := strconv.ParseFloat(*tArg, 64)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v\n", err)
-			os.Exit(1)
-		}
-		f := tempconv.Fahrenheit(t)
-		c := tempconv.Celsius(t)
-		fmt.Printf("%s = %s, %s = %s\n", f, tempconv.FToC(f), c, tempconv.CToF(c))
+	tStr := *tArg
+	if tStr == "" {
+		fmt.Print("Please input temperature >> ")
+		sc.Scan()
+		tStr = sc.Text()
 	}
+	t, err := strconv.ParseFloat(tStr, 64)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+	fa := tempconv.Fahrenheit(t)
+	ce := tempconv.Celsius(t)
+	fmt.Printf("%s = %s, %s = %s\n", fa, tempconv.FToC(fa), ce, tempconv.CToF(ce))
 
-	if *lArg != "" {
-		l, err := strconv.ParseFloat(*lArg, 64)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v\n", err)
-			os.Exit(1)
-		}
-		f := lengthconv.Feet(l)
-		m := lengthconv.Meter(l)
-		fmt.Printf("%s = %s, %s = %s\n", f, lengthconv.FToM(f), m, lengthconv.MToF(m))
+	lStr := *lArg
+	if lStr == "" {
+		fmt.Print("Please input length >> ")
+		sc.Scan()
+		lStr = sc.Text()
 	}
+	l, err := strconv.ParseFloat(lStr, 64)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+	fe := lengthconv.Feet(l)
+	me := lengthconv.Meter(l)
+	fmt.Printf("%s = %s, %s = %s\n", fe, lengthconv.FToM(fe), me, lengthconv.MToF(me))
 
-	if *wArg != "" {
-		w, err := strconv.ParseFloat(*wArg, 64)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v\n", err)
-			os.Exit(1)
-		}
-		g := weightconv.Gram(w)
-		p := weightconv.Pound(w)
-		fmt.Printf("%s = %s, %s = %s\n", g, weightconv.GToP(g), p, weightconv.PToG(p))
+	wStr := *wArg
+	if wStr == "" {
+		fmt.Print("Please input weight >> ")
+		sc.Scan()
+		wStr = sc.Text()
 	}
+	w, err := strconv.ParseFloat(wStr, 64)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+	gr := weightconv.Gram(w)
+	po := weightconv.Pound(w)
+	fmt.Printf("%s = %s, %s = %s\n", gr, weightconv.GToP(gr), po, weightconv.PToG(po))
+
 }
