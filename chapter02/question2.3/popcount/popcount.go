@@ -9,6 +9,7 @@ func init() {
 }
 
 func PopCount(x uint64) int {
+	// 最大64ビットまで計算可能 (というか、uint64の最大サイズが64ビットだからか)
 	return int(pc[byte(x>>(0*8))] +
 		pc[byte(x>>(1*8))] +
 		pc[byte(x>>(2*8))] +
