@@ -1,0 +1,8 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/shimech/go-training/chapter02/question2.5/popcount
+cpu: Intel(R) Core(TM) i7-1068NG7 CPU @ 2.30GHz
+BenchmarkPopCount-8                      	1000000000	         0.2823 ns/op	       0 B/op	       0 allocs/op
+BenchmarkPopCountLogicalAndDecrement-8   	184303384	         6.414 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/shimech/go-training/chapter02/question2.5/popcount	2.383s
